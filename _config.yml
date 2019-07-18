@@ -20,7 +20,7 @@ webtitle: "Eavan's Blog"
 bio: 'Pan Siyan'
 about: true
 aboutyou: 'Hi,there is my blog~'
-portraits: '/assets/head.jpeg' # your portraits image file path
+portraits: '/assets/head.jpg' # your portraits image file path
 
 # SNS
 SNS: true
