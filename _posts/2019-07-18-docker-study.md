@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Docker Study - gcc'
+title: 'Docker Study-gcc'
 date: 2019-07-18
 author: eavan
 color: rgb(255,210,32)
