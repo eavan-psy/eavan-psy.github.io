@@ -39,7 +39,7 @@ centos              latest        8efe422e6104      210 MB
 &emsp; 这里先使用了其他开发者开发的docker容器，为基于alpine的python opencv的容器，大约800MB，对于我们所用的来说，多了一些python的部件，但可以使用，存在本地image里，名字为test。  
 &emsp; dockerfile网址：(https://gitlab.com/ucair/alpine-opencv/blob/master/Dockerfile)  
 &emsp; 进入docker容器后（sudo docker run --name test -it -v /home/psy/mydocker/mygcc/other:/mygcc 85aa44e19d49 /bin/sh），检测是否可用选择(https://www.cnblogs.com/xiangfeidemengzhu/p/7657887.html) 进行检测。这种运行方法为cmake方法，其中测试图片放在当前文件夹内，如果正常，则显示如图：
-![图片]({{ "/assets/docker/opencv结果.png"|absolute_url}})
+![1]({{ "/assets/docker/opencv结果.PNG"|absolute_url}})
 &emsp; 其他方法可见：(https://blog.csdn.net/m0_37357063/article/details/84191669) 
  
 Dockerfile test版如下：（目前只能通过cmake编译，牵扯到libgtk2.0-dev/pkg-config等的图像显示还有问题）
@@ -136,7 +136,7 @@ xhost +
 ```
 sudo docker run -d  -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name libreoffice jess/libreoffice
 ```
-![图片]({"/assets/docker/GUI结果.png"|absolute_url})
+![2]({"/assets/docker/GUI结果.PNG"|absolute_url})
 
 ### 方法2：在运行容器后配置
 
