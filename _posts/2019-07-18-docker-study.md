@@ -14,7 +14,7 @@ tags: docker
 
 &emsp; 这里根据项目需要在docker内进行c++文件的编译，因此需要先行配置环境。
 
-&emsp; 由于ubuntu的docker大约200MB，根据网络资料，可采取更为精简化、轻量级的debian版本和Alpine版本。Alpine操作系统是一个面向安全的轻型 Linux 发行版。，不同于通常 Linux 发行版，Alpine 采用了 musl libc 和 busybox 以减小系统的体积和运行时资源消耗，但功能上比busybox又完善的多，因此得到开源社区越来越多的青睐。在保持瘦身的同时，Alpine 还提供了自己的包管理工具 apk，可以通过(https://pkgs.alpinelinux.org/packages) 网站上查询包信息，也可以直接通过 apk 命令直接查询和安装各种软件，且大小仅有5M。
+&emsp; 由于ubuntu的docker大约200MB，根据网络资料，可采取更为精简化、轻量级的debian版本和Alpine版本。Alpine操作系统是一个面向安全的轻型 Linux 发行版。，不同于通常 Linux 发行版，Alpine 采用了 musl libc 和 busybox 以减小系统的体积和运行时资源消耗，但功能上比busybox又完善的多，因此得到开源社区越来越多的青睐。在保持瘦身的同时，Alpine 还提供了自己的包管理工具 apk，可以通过[https://pkgs.alpinelinux.org/packages](https://pkgs.alpinelinux.org/packages) 网站上查询包信息，也可以直接通过 apk 命令直接查询和安装各种软件，且大小仅有5M。
 
 &emsp; 目前 Docker 官方已开始推荐使用 Alpine 替代之前的 Ubuntu 做为基础镜像环境。这样会带来多个好处。包括镜像下载速度加快，镜像安全性提高，主机之间的切换更方便，占用更少磁盘空间等。
 ```
@@ -37,10 +37,10 @@ centos              latest        8efe422e6104      210 MB
 ### Alpine
 
 &emsp; 这里先使用了其他开发者开发的docker容器，为基于alpine的python opencv的容器，大约800MB，对于我们所用的来说，多了一些python的部件，但可以使用，存在本地image里，名字为test。  
-&emsp; dockerfile网址：(https://gitlab.com/ucair/alpine-opencv/blob/master/Dockerfile)  
-&emsp; 进入docker容器后（sudo docker run --name test -it -v /home/psy/mydocker/mygcc/other:/mygcc 85aa44e19d49 /bin/sh），检测是否可用选择(https://www.cnblogs.com/xiangfeidemengzhu/p/7657887.html) 进行检测。这种运行方法为cmake方法，其中测试图片放在当前文件夹内，如果正常，则显示如图：
+&emsp; dockerfile网址：[https://gitlab.com/ucair/alpine-opencv/blob/master/Dockerfile](https://gitlab.com/ucair/alpine-opencv/blob/master/Dockerfile)  
+&emsp; 进入docker容器后（sudo docker run --name test -it -v /home/psy/mydocker/mygcc/other:/mygcc 85aa44e19d49 /bin/sh），检测是否可用选择[https://www.cnblogs.com/xiangfeidemengzhu/p/7657887.html](https://www.cnblogs.com/xiangfeidemengzhu/p/7657887.html) 进行检测。这种运行方法为cmake方法，其中测试图片放在当前文件夹内，如果正常，则显示如图：
 ![1]({{ "/assets/docker/opencv结果.PNG"|absolute_url}})
-&emsp; 其他方法可见：(https://blog.csdn.net/m0_37357063/article/details/84191669) 
+&emsp; 其他方法可见：[https://blog.csdn.net/m0_37357063/article/details/84191669](https://blog.csdn.net/m0_37357063/article/details/84191669) 
  
 Dockerfile test版如下：（目前只能通过cmake编译，牵扯到libgtk2.0-dev/pkg-config等的图像显示还有问题）
 
@@ -111,7 +111,7 @@ sudo make -j $(nproc)
 cd cpp/  
 ./cpp-example-facedetect XX (图片路径)
 ```
-各依赖包详细说明：(https://www.cnblogs.com/arkenstone/p/6490017.html)
+各依赖包详细说明：[https://www.cnblogs.com/arkenstone/p/6490017.html](https://www.cnblogs.com/arkenstone/p/6490017.html)
 
 ## docker GUI图形界面显示问题
 
