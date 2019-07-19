@@ -31,7 +31,9 @@ centos              latest        8efe422e6104      210 MB
 &emsp; 安装g++:`apk add g++`,使用`g++ -v`检测是否安装成功。
 
 ## docker里的opencv编译问题
-###Alpine
+
+### Alpine
+
 &emsp; 这里先使用了其他开发者开发的docker容器，为基于alpine的python opencv的容器，大约800MB，对于我们所用的来说，多了一些python的部件，但可以使用，存在本地image里，名字为test。
 &emsp; dockerfile网址：https://gitlab.com/ucair/alpine-opencv/blob/master/Dockerfile
 &emsp; 进入docker容器后（sudo docker run --name test -it -v /home/psy/mydocker/mygcc/other:/mygcc 85aa44e19d49 /bin/sh），检测是否可用选择https://www.cnblogs.com/xiangfeidemengzhu/p/7657887.html 进行检测。这种运行方法为cmake方法，其中测试图片放在当前文件夹内，如果正常，则显示如图：
@@ -81,7 +83,8 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
 ```
 如果需要pkg-congfig，将OPENCV_GENERATE_PKGCONFIG=ON配置加上，还有gtk设置-D WITH_GTK=ON。PKG选项会生成opencv4.pc文件，将其放入/usr/lib/pkgconfig/下即可。
 
-###Debian
+### Debian
+
 &emsp; debian使用apt安装，应该gtk没什么问题，流程如下：
 ```
 sudo apt-get install build-essential
@@ -107,9 +110,9 @@ cd cpp/
 ```
 各依赖包详细说明：https://www.cnblogs.com/arkenstone/p/6490017.html
 
-##docker GUI图形界面显示问题
+## docker GUI图形界面显示问题
 
-###方法1：启动容器时添加配置项
+### 方法1：启动容器时添加配置项
 
 &emsp; 原理上可以把docker镜像看做一台没配显示器的电脑，程序可以运行，但是没地方显示。而linux目前的主流图像界面服务X11又支持 客户端/服务端（Client/Server）的工作模式，只要在容器启动的时候，将『unix:端口』或『主机名:端口』共享给docker,docker就可以通过端口找到显示输出的地方，和linux系统共用显示。
 &emsp; 具体操作：启动容器时添加如下选项
@@ -125,14 +128,14 @@ xhost +
 ```
 其中xhost + 可能需要每次启动主机时都执行一次
 
-####实例
+#### 实例
 
 ```
 sudo docker run -d  -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name libreoffice jess/libreoffice
 ```
 ![图片]({"/assets/docker/GUI结果.png"|absolute_url})
 
-###方法2：在运行容器后配置
+### 方法2：在运行容器后配置
 
 &emsp; ifconfig查看宿主机ip（假设为xxx.xxx.xxx.xxx），并echo $DISPLAY 查看当前显示环境变量（假设为:0）,则在docker内 export `DISPLAY=xxx.xxx.xxx.xx:0 `。在主机内/etc/lightdm/lightdm.conf增加网络许可连接：
 ```
