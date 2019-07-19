@@ -136,7 +136,7 @@ xhost +
 ```
 sudo docker run -d  -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --name libreoffice jess/libreoffice
 ```
-![2]({"/assets/docker/GUI结果.PNG"|absolute_url})
+![2]({{"/assets/docker/GUI结果.PNG"|absolute_url}})
 
 ### 方法2：在运行容器后配置
 
