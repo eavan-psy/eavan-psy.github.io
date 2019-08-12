@@ -90,16 +90,18 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip && \
 
 &emsp; debian使用apt安装，应该gtk没什么问题，流程如下：  
 ```
-sudo apt-get install build-essential
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-sudo apt-get install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev #处理图像所需的包
+sudo apt-get install build-essential -y
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev -y 
+sudo apt-get install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev -y #处理图像所需的包
 
+apt-get install wget zip -y
 wget https://github.com/opencv/opencv/archive/3.2.0.zip //下载opencv
-tar 3.2.0.zip
+unzip -q 3.2.0.zip
 cd opencv-3.2.0
 mkdir build
 cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+make -j$(nproc) && make install
 
 sudo /bin/bash -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'  
 sudo ldconfig
@@ -112,6 +114,33 @@ cd cpp/
 ./cpp-example-facedetect XX (图片路径)
 ```
 各依赖包详细说明：[https://www.cnblogs.com/arkenstone/p/6490017.html](https://www.cnblogs.com/arkenstone/p/6490017.html)
+
+Dockerfile:
+```
+FROM debian:latest
+
+ENV OPENCV_VERSION 3.2.0
+
+WORKDIR /mytest/
+
+COPY opencv-${OPENCV_VERSION}/ /mytest/
+
+RUN apt-get --update && \
+    apt-get install build-essential \
+    cmake git libgtk2.0-dev pkg-config \
+    libavcodec-dev libavformat-dev libswscale-dev \
+    libjpeg-dev libpng-dev  && \
+    mkdir -p opencv-${OPENCV_VERSION}/build && \
+    cd opencv-${OPENCV_VERSION}/build && \
+    cmake \
+      -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      .. & \
+    make -j$(nproc) && \
+    make install && \
+    rm -rf /mytest/opencv-${OPENCV_VERSION}/
+
+```
 
 ## docker GUI图形界面显示问题
 
