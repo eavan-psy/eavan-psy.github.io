@@ -1,5 +1,5 @@
 # Site settings 配置站点
-title: "Eavan's Blog"
+title: "Eavan's Tech Blog"
 description: 'your web description'
 keywords: 'your web keywords, another keywords'
 url: 'https://eavan-psy.github.io' # your host
@@ -41,7 +41,7 @@ SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagr
   twitch: ''
 
 # 分页
-paginate: 2
+paginate: 3
 paginatepath: ['page:num']
 
 # since
