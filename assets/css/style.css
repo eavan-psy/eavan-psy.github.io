@@ -279,7 +279,7 @@ a{
 .pagination{
   height: 20px;
   width: 100%;
-  /*background-color: green;*/
+  background-color: green;
 }
 .page-links{
   /*background-color: blue;*/
