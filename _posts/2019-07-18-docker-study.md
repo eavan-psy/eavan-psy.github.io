@@ -12,6 +12,8 @@ tags: docker
 
 ## Docker里的c/c++编译
 
+[秘密链接](https://dev.sankuai.com/cargo/stack)
+
 &emsp; 这里根据项目需要在docker内进行c++文件的编译，因此需要先行配置环境。
 
 &emsp; 由于ubuntu的docker大约200MB，根据网络资料，可采取更为精简化、轻量级的debian版本和Alpine版本。Alpine操作系统是一个面向安全的轻型 Linux 发行版。，不同于通常 Linux 发行版，Alpine 采用了 musl libc 和 busybox 以减小系统的体积和运行时资源消耗，但功能上比busybox又完善的多，因此得到开源社区越来越多的青睐。在保持瘦身的同时，Alpine 还提供了自己的包管理工具 apk，可以通过[https://pkgs.alpinelinux.org/packages](https://pkgs.alpinelinux.org/packages) 网站上查询包信息，也可以直接通过 apk 命令直接查询和安装各种软件，且大小仅有5M。
